@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#ffffff">
+<title>Bijoy Hasan | N5 Vocabulary Quiz</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#f3f4f6;color:#111827;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+main{max-width:780px;margin:auto;padding:14px}
+.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 5px 22px rgba(0,0,0,.08)}
+h1{text-align:center;font-size:25px;margin:4px 0}.wm{text-align:center;font-weight:800;font-size:18px;margin:5px 0}
+.sub{text-align:center;color:#6b7280;font-size:14px;margin:0 0 18px}
+.q{border:1px solid #e5e7eb;border-radius:15px;padding:15px;margin:13px 0}.q b{display:block;line-height:1.55;margin-bottom:10px}
+.opt{display:flex;align-items:center;gap:9px;min-height:48px;padding:10px 12px;margin:8px 0;border:1px solid #d1d5db;border-radius:11px;background:#fafafa;cursor:pointer;user-select:none}
+.opt input{width:19px;height:19px}.opt.sel{background:#eef2ff;border-color:#6366f1}.opt.ok{background:#dcfce7!important;border-color:#16a34a!important}.opt.no{background:#fee2e2!important;border-color:#dc2626!important}
+button{width:100%;padding:15px;border:0;border-radius:13px;background:#111827;color:#fff;font-size:18px;font-weight:800;margin-top:8px}
+#result{display:none;margin-top:18px;padding:17px;border-radius:15px;background:#f8fafc}.score{text-align:center;font-size:27px;font-weight:800}
+.review{padding:10px 0;border-bottom:1px solid #e5e7eb;line-height:1.5}.small{text-align:center;color:#6b7280}
+</style></head><body><main><section class="card">
+<h1>🇯🇵 N5 Vocabulary Quiz</h1><div class="wm">✨ Bijoy Hasan ✨</div>
+<div class="sub">Lesson 1–10 • প্রতি পরীক্ষায় নতুন প্রশ্ন</div>
+<div id="quiz"></div><div id="result"></div>
+</section></main>
+<script>
+const bank=[["わたし", "আমি"], ["あなた", "আপনি/তুমি"], ["せんせい", "শিক্ষক"], ["がくせい", "ছাত্র/ছাত্রী"], ["かいしゃいん", "কোম্পানির কর্মচারী"], ["しゃいん", "কোম্পানির কর্মী"], ["ぎんこういん", "ব্যাংক কর্মচারী"], ["いしゃ", "ডাক্তার"], ["けんきゅうしゃ", "গবেষক"], ["エンジニア", "ইঞ্জিনিয়ার"], ["だいがく", "বিশ্ববিদ্যালয়"], ["びょういん", "হাসপাতাল"], ["だれ", "কে"], ["どなた", "কে (ভদ্রভাবে)"], ["さい", "বয়সের কাউন্টার"], ["これ", "এটি"], ["それ", "সেটি"], ["あれ", "ওটি"], ["この", "এই"], ["その", "সেই/ওই"], ["あの", "ঐ/ওই"], ["ほん", "বই"], ["じしょ", "অভিধান"], ["ざっし", "ম্যাগাজিন"], ["しんぶん", "সংবাদপত্র"], ["ノート", "নোটবুক"], ["てちょう", "হাতের নোটবুক"], ["めいし", "ব্যবসায়িক কার্ড"], ["カード", "কার্ড"], ["えんぴつ", "পেন্সিল"], ["ボールペン", "বলপেন"], ["シャープペンシル", "মেকানিক্যাল পেন্সিল"], ["かぎ", "চাবি"], ["とけい", "ঘড়ি"], ["かさ", "ছাতা"], ["かばん", "ব্যাগ"], ["テレビ", "টেলিভিশন"], ["ラジオ", "রেডিও"], ["カメラ", "ক্যামেরা"], ["コンピューター", "কম্পিউটার"], ["くるま", "গাড়ি"], ["つくえ", "ডেস্ক"], ["いす", "চেয়ার"], ["おみやげ", "স্মারক উপহার"], ["ここ", "এখানে"], ["そこ", "সেখানে"], ["あそこ", "ওখানে"], ["どこ", "কোথায়"], ["こちら", "এইদিকে"], ["そちら", "সেইদিকে"], ["あちら", "ঐদিকে"], ["どちら", "কোনদিকে/কোনটি"], ["きょうしつ", "শ্রেণিকক্ষ"], ["しょくどう", "খাবার ঘর/ক্যান্টিন"], ["じむしょ", "অফিস"], ["かいぎしつ", "মিটিং রুম"], ["うけつけ", "রিসেপশন"], ["ロビー", "লবি"], ["へや", "ঘর"], ["トイレ", "টয়লেট"], ["かいだん", "সিঁড়ি"], ["エレベーター", "লিফট"], ["エスカレーター", "এস্কেলেটর"], ["じどうはんばいき", "ভেন্ডিং মেশিন"], ["でんわ", "টেলিফোন"], ["くに", "দেশ"], ["かいしゃ", "কোম্পানি"], ["うち", "বাড়ি"], ["おきます", "ঘুম থেকে উঠি"], ["ねます", "ঘুমাই/শুতে যাই"], ["はたらきます", "কাজ করি"], ["やすみます", "বিশ্রাম নিই/ছুটি নিই"], ["べんきょうします", "পড়াশোনা করি"], ["おわります", "শেষ হয়"], ["はじまります", "শুরু হয়"], ["いま", "এখন"], ["あさ", "সকাল"], ["ひる", "দুপুর"], ["ばん", "সন্ধ্যা/রাত"], ["ごぜん", "পূর্বাহ্ন/AM"], ["ごご", "অপরাহ্ন/PM"], ["まいあさ", "প্রতিদিন সকাল"], ["まいばん", "প্রতিদিন রাত"], ["まいにち", "প্রতিদিন"], ["げつようび", "সোমবার"], ["かようび", "মঙ্গলবার"], ["すいようび", "বুধবার"], ["もくようび", "বৃহস্পতিবার"], ["きんようび", "শুক্রবার"], ["どようび", "শনিবার"], ["にちようび", "রবিবার"], ["なんじ", "কয়টা বাজে"], ["なんぷん", "কত মিনিট"], ["はん", "অর্ধেক"], ["いきます", "যাই"], ["きます", "আসি"], ["かえります", "ফিরে যাই"], ["がっこう", "স্কুল"], ["えき", "স্টেশন"], ["ひこうき", "বিমান"], ["ふね", "জাহাজ"], ["でんしゃ", "ট্রেন"], ["ちかてつ", "পাতাল রেল"], ["しんかんせん", "বুলেট ট্রেন"], ["バス", "বাস"], ["タクシー", "ট্যাক্সি"], ["じてんしゃ", "সাইকেল"], ["あるいて", "হেঁটে"], ["ともだち", "বন্ধু"], ["かぞく", "পরিবার"], ["ひとりで", "একা"], ["せんしゅう", "গত সপ্তাহ"], ["こんしゅう", "এই সপ্তাহ"], ["らいしゅう", "আগামী সপ্তাহ"], ["せんげつ", "গত মাস"], ["こんげつ", "এই মাস"], ["らいげつ", "আগামী মাস"], ["きょねん", "গত বছর"], ["ことし", "এই বছর"], ["らいねん", "আগামী বছর"], ["たんじょうび", "জন্মদিন"], ["いつ", "কখন"], ["たべます", "খাই"], ["のみます", "পান করি"], ["すいます", "ধূমপান করি"], ["みます", "দেখি"], ["ききます", "শুনি"], ["よみます", "পড়ি"], ["かきます", "লিখি"], ["かいます", "কিনি"], ["とります", "ছবি তুলি"], ["します", "করি"], ["あいます", "দেখা করি"], ["ごはん", "ভাত/খাবার"], ["パン", "রুটি"], ["たまご", "ডিম"], ["にく", "মাংস"], ["さかな", "মাছ"], ["やさい", "সবজি"], ["くだもの", "ফল"], ["みず", "পানি"], ["おちゃ", "চা"], ["こうちゃ", "কালো চা"], ["ぎゅうにゅう", "দুধ"], ["ジュース", "জুস"], ["おさけ", "সাকে/মদ"], ["てがみ", "চিঠি"], ["しゃしん", "ছবি"], ["ビデオ", "ভিডিও"], ["てんき", "আবহাওয়া"], ["なに", "কী"], ["きります", "কাটি"], ["おくります", "পাঠাই"], ["あげます", "দিই"], ["もらいます", "পাই/গ্রহণ করি"], ["かします", "ধার দিই"], ["かります", "ধার নিই"], ["おしえます", "শেখাই/জানাই"], ["ならいます", "শিখি"], ["かけます", "ফোন করি"], ["はし", "চপস্টিক"], ["スプーン", "চামচ"], ["ナイフ", "ছুরি"], ["フォーク", "কাঁটা চামচ"], ["はさみ", "কাঁচি"], ["パソコン", "কম্পিউটার"], ["メール", "ই-মেইল"], ["きっぷ", "টিকিট"], ["おかね", "টাকা"], ["はな", "ফুল"], ["プレゼント", "উপহার"], ["にもつ", "লাগেজ"], ["おとうさん", "বাবা"], ["おかあさん", "মা"], ["おにいさん", "বড় ভাই"], ["おねえさん", "বড় বোন"], ["おとうと", "ছোট ভাই"], ["いもうと", "ছোট বোন"], ["もう", "ইতিমধ্যে/আর"], ["まだ", "এখনও"], ["これから", "এখন থেকে"], ["おおきい", "বড়"], ["ちいさい", "ছোট"], ["あたらしい", "নতুন"], ["ふるい", "পুরোনো"], ["いい", "ভালো"], ["わるい", "খারাপ"], ["あつい", "গরম"], ["さむい", "ঠান্ডা"], ["つめたい", "ঠান্ডা (বস্তু)"], ["おいしい", "সুস্বাদু"], ["まずい", "বাজে স্বাদের"], ["たかい", "দামি/উঁচু"], ["やすい", "সস্তা"], ["ひくい", "নিচু"], ["おもしろい", "মজার/আকর্ষণীয়"], ["つまらない", "বিরক্তিকর"], ["むずかしい", "কঠিন"], ["やさしい", "সহজ"], ["いそがしい", "ব্যস্ত"], ["たのしい", "আনন্দদায়ক"], ["しろい", "সাদা"], ["くろい", "কালো"], ["あかい", "লাল"], ["あおい", "নীল"], ["きれい", "সুন্দর/পরিষ্কার"], ["しずか", "শান্ত"], ["にぎやか", "জমজমাট"], ["ゆうめい", "বিখ্যাত"], ["げんき", "সুস্থ/প্রাণবন্ত"], ["わかります", "বুঝি"], ["あります", "আছে (জড় বস্তু)"], ["すき", "পছন্দ"], ["きらい", "অপছন্দ"], ["じょうず", "দক্ষ"], ["へた", "অদক্ষ"], ["りょうり", "রান্না/রান্নাবান্না"], ["のみもの", "পানীয়"], ["スポーツ", "খেলাধুলা"], ["やきゅう", "বেসবল"], ["おんがく", "সঙ্গীত"], ["うた", "গান"], ["クラシック", "ক্লাসিক্যাল সঙ্গীত"], ["ジャズ", "জ্যাজ"], ["コンサート", "কনসার্ট"], ["カラオケ", "কারাওকে"], ["え", "ছবি/চিত্র"], ["じ", "অক্ষর"], ["かんじ", "কানজি"], ["ひらがな", "হিরাগানা"], ["カタカナ", "কাতাকানা"], ["こまります", "বিপদে পড়ি/সমস্যায় পড়ি"], ["よく", "ভালোভাবে/প্রায়ই"], ["だいたい", "মোটামুটি"], ["たくさん", "অনেক"], ["すこし", "অল্প"], ["あまり", "খুব একটা নয়"], ["ぜんぜん", "একেবারেই নয়"], ["とても", "খুব"], ["なぜ", "কেন"], ["います", "আছে (জীবিত)"], ["うえ", "উপরে"], ["した", "নিচে"], ["まえ", "সামনে"], ["うしろ", "পেছনে"], ["みぎ", "ডান"], ["ひだり", "বাম"], ["なか", "ভেতর"], ["そと", "বাইরে"], ["となり", "পাশে"], ["ちかく", "কাছে"], ["あいだ", "মাঝে"], ["き", "গাছ"], ["はなや", "ফুলের দোকান"], ["おとこのこ", "ছেলে"], ["おんなのこ", "মেয়ে"], ["ねこ", "বিড়াল"], ["いぬ", "কুকুর"], ["はこ", "বাক্স"], ["れいぞうこ", "ফ্রিজ"], ["ベッド", "বিছানা"], ["たな", "তাক"], ["ドア", "দরজা"], ["まど", "জানালা"], ["ポスト", "ডাকবাক্স"]];
+const letters=["A","B","C","D"];let current=[];
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function options(correct){
+ const wrong=shuffle(bank.filter(x=>x[1]!==correct)).slice(0,3).map(x=>x[1]);
+ return shuffle([correct,...wrong]);
+}
+function build(){
+ current=shuffle(bank).slice(0,40);
+ const qz=document.getElementById("quiz");qz.innerHTML="";
+ current.forEach((x,i)=>{
+  const box=document.createElement("div");box.className="q";
+  box.innerHTML="<b>"+(i+1)+". 「"+x[0]+"」 এর সঠিক বাংলা অর্থ কোনটি?</b>";
+  options(x[1]).forEach((text,j)=>{
+   const lab=document.createElement("label");lab.className="opt";
+   const input=document.createElement("input");input.type="radio";input.name="q"+i;input.value=text;
+   lab.appendChild(input);lab.appendChild(document.createTextNode(" "+letters[j]+". "+text));
+   lab.onclick=()=>{box.querySelectorAll(".opt").forEach(o=>o.classList.remove("sel"));lab.classList.add("sel")};
+   box.appendChild(lab);
+  });qz.appendChild(box);
+ });
+ const b=document.createElement("button");b.textContent="✅ সব উত্তর দেওয়া শেষ — SUBMIT";b.onclick=check;qz.appendChild(b);
+}
+function check(){
+ let score=0,answered=0,review="";
+ current.forEach((x,i)=>{
+  const sel=document.querySelector('input[name="q'+i+'"]:checked'),opts=document.querySelectorAll('input[name="q'+i+'"]');
+  if(sel){answered++;if(sel.value===x[1]){score++;sel.parentElement.classList.add("ok")}else sel.parentElement.classList.add("no")}
+  opts.forEach(o=>{if(o.value===x[1])o.parentElement.classList.add("ok")});
+  review+=sel&&sel.value===x[1]?'<div class="review"><b>Q'+(i+1)+':</b> ✅ সঠিক</div>':'<div class="review"><b>Q'+(i+1)+':</b> ❌ তোমার উত্তর: '+(sel?sel.value:"দেওয়া হয়নি")+'<br>✅ সঠিক: '+x[1]+'</div>';
+ });
+ const pct=Math.round(score/current.length*100),msg=pct>=90?"🔥 অসাধারণ!":pct>=75?"👏 খুব ভালো!":pct>=60?"👍 ভালো!":"📚 আরও practice দরকার!";
+ document.getElementById("result").innerHTML='<div class="score">🎯 '+score+'/'+current.length+'<br>📊 '+pct+'%</div><p class="small">Answered: '+answered+'/'+current.length+'<br>'+msg+'</p><hr>'+review+'<button onclick="build();document.getElementById(\'result\').style.display=\'none\';window.scrollTo(0,0)">🔄 নতুন প্রশ্ন দিয়ে আবার পরীক্ষা</button>';
+ document.getElementById("result").style.display="block";document.getElementById("result").scrollIntoView({behavior:"smooth"});
+}
+build();
+</script></section></main></body></html>
